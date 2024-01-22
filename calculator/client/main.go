@@ -6,10 +6,10 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	pb "github.com/deniskarpenko/go-grpc/greet/proto"
+	pb "github.com/deniskarpenko/go-grpc/calculator/proto"
 )
 
-var addr string = "localhost:50051"
+var addr string = "localhost:9001"
 
 func main() {
 	conn, err := grpc.Dial(addr, grpc.WithTransportCredentials(insecure.NewCredentials()))
@@ -20,6 +20,6 @@ func main() {
 
 	defer conn.Close()
 
-	c := pb.NewGreetServiceClient(conn)
-	doGreet(c)
+	c := pb.NewCalculatorServiceClient(conn)
+	doSum(c)
 }
